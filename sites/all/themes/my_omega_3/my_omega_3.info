@@ -38,6 +38,10 @@ css[global.css][description] = 'This file holds all the globally active custom C
 stylesheets[all][] = css/main.min.css
 stylesheets[all][] = css/main.css
 stylesheets[all][] = css/font-awesome.min.css
+
+scripts[] = js/libs.min.js
+scripts[] = js/main.js
+
 settings[alpha_grid] = 'alpha_default'
 settings[alpha_primary_alpha_default] = 'normal'
 settings[alpha_responsive] = '1'

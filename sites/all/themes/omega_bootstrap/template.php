@@ -10,3 +10,33 @@
  * for your subtheme grows. Please read the README.txt in the /preprocess and /process subfolders
  * for more information on this topic.
  */
+ 
+ /**
+ * Implements hook_process().
+ */
+function omega_bootstrap_process(&$vars, $hook) {
+  if (!empty($vars['elements']['#grid']) || !empty($vars['elements']['#data']['wrapper_css'])) {
+    if (!empty($vars['elements']['#grid'])) {
+      foreach (array('prefix', 'suffix', 'push', 'pull') as $quality) {
+        if (!empty($vars['elements']['#grid'][$quality])) {
+          array_unshift($vars['attributes_array']['class'], 'offset' . $vars['elements']['#grid'][$quality]); # Добавляем класс offset* региону
+        }
+      }
+
+      array_unshift($vars['attributes_array']['class'], 'span' . $vars['elements']['#grid']['columns']); # Добавляем класс span* региону
+    }
+  
+    $vars['attributes'] = $vars['attributes_array'] ? drupal_attributes($vars['attributes_array']) : '';
+  }
+
+  if (!empty($vars['elements']['#grid_container']) || !empty($vars['elements']['#data']['css'])) {
+
+    if (!empty($vars['elements']['#grid_container'])) {
+      $vars['content_attributes_array']['class'][] = 'container'; # Добавляем класс container зоне
+    }
+
+    $vars['content_attributes'] = $vars['content_attributes_array'] ? drupal_attributes($vars['content_attributes_array']) : '';
+  }
+
+  alpha_invoke('process', $hook, $vars);
+}
