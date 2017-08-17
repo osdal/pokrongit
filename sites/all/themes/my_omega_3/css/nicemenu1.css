@@ -1,0 +1,117 @@
+/* $Id: nice_menus_default.css,v 1.10 2010/10/09 16:58:04 add1sun Exp $ */
+/*
+  This is the default layout template for nice menus, and will provide
+  a starting point for the look of your menus. To customize, it's
+  recommended to create a custom CSS file using this file as a template,
+  then configure the module to use your custom CSS file
+  (this is done in the global settings tab of the theme administration.)
+
+  See README.txt and the handbook page (http://drupal.org/node/185543)
+  for more information on using the CSS.
+*/
+
+/******************************
+ Global CSS for ALL menu types
+******************************/
+
+/* Просто ul-обертки, все */
+ul.nice-menu,
+ul.nice-menu-down ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.block ul.nice-menu-down {
+	margin:0;
+	padding:0;
+}
+
+/* Абсолютно все li */
+ul.nice-menu-down li {
+  float: left; /* LTR */
+}
+
+/* Все ссылки */
+ul.nice-menu-down a {
+  padding: 6px 5px 6px 5px;
+  font-size:12px !important;
+}
+
+/* Пункты меню только из первого уровня */
+ul.nice-menu-down > li {
+	background:transparent url(../images/menu/menu-primary-right.png) top right no-repeat;
+	padding-right:8px;
+}
+ul.nice-menu-down > li > a{
+	color:white;
+	text-decoration:none;
+	padding-top:13px;
+	height:20px;
+	padding-left:13px;
+	text-transform:uppercase;
+	background:transparent url(../images/menu/menu-primary-left.png) top left no-repeat;	
+	font-size:75%;
+}
+
+ul.nice-menu-down > li.active-trail,
+ul.nice-menu-down > li:hover {
+	background:#e61006 url(../images/menu/menu-primary-right-active.png) top right no-repeat;
+}
+ul.nice-menu-down > li.active-trail > a,
+ul.nice-menu-down > li:hover > a{
+	background:transparent url(../images/menu/menu-primary-left-active.png) top left no-repeat;	
+}
+
+/* Обертка ul второго уровня меню */
+ul.nice-menu-down ul {
+  top: 45px;
+  left: 0; /* LTR */
+  margin-right: 0; /* LTR */
+  float: left; /* LTR */
+  border: 0;
+  background:#e61006;
+  padding-bottom:10px;
+}
+
+/* li второго уровня меню */
+ul.nice-menu-down ul li {
+  width: 12.5em;
+  clear: both;    
+  line-height:2em;
+  padding:0 10px;
+}
+/* Ссылки только второго лвла меню */
+ul.nice-menu-down ul > li > a {
+  background:transparent url(../images/menu/menu-primary-2nd-level-bkd.png) bottom left repeat-x;	
+  color:white;
+  text-decoration:none;
+}
+/* Убираем у второго лвла меню у последнего li подчеркивание */
+ul.nice-menu-down ul > li.last > a {
+	background:none;
+}
+
+ul.nice-menu-down ul > li > a:hover {
+	text-decoration:underline;
+}
+
+/* ul обертка 3го лвла меню */
+ul.nice-menu-down li ul li ul {
+  left: 12.5em; /* LTR */
+  top: -1px;
+}
+
+/* Пункт меню, который имеет выпадающий 2й лвл */
+ul.nice-menu-down .menuparent > a {
+	height:30px;
+}
+ul.nice-menu-down li.menuparent {
+}
+ul.nice-menu-down li.menuparent:hover {
+}
+
+/* Пункт меню из 2го лвла, который имеет выпадающий 3й лвл */
+ul.nice-menu-down li li.menuparent {
+}
+ul.nice-menu-down li li.menuparent:hover {
+}

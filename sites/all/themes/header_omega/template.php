@@ -19,7 +19,7 @@ function header_omega_form_alter(&$form, &$form_state, $form_id) {
     $deftext = t('Поиск');
     $form['search_block_form']['#title'] = t(' '); 
     $form['search_block_form']['#title_display'] = 'invisible'; 
-    $form['search_block_form']['#size'] = 24;  
+    $form['search_block_form']['#size'] = 20;  
     $form['search_block_form']['#default_value'] = $deftext; 
     $form['actions']['submit']['#value'] = '<div>'; // Change the text on the submit button
 	//$form['actions']['submit']['#value'] = t('Искать'); 
@@ -28,12 +28,29 @@ function header_omega_form_alter(&$form, &$form_state, $form_id) {
     $form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = '".$deftext."';}";
     $form['search_block_form']['#attributes']['onfocus'] = "if (this.value == '".$deftext."') {this.value = '';}";
 	
-	$form['actions']['submit'] = array(
-      '#type'   => 'markup',
-      '#prefix' => '<i class="fa fa-search" aria-hidden="true">',
-      '#suffix' => '</i>',
-      '#markup' => '<i class="icon-search icon-white"></i>');
+	$form['actions']['submit'] = array (
+    '#type' => 'submit',
+    '#value' => '',
+    '#attributes' => array( 'style' => 'position: absolute; left: 0; right: 0; top: 0; bottom: 0; border: none; opacity: 0; width: 100%;'), // put input field over the top of button and make transparent
+    '#prefix' => '<button type="submit" class="btn btn-primary"><i class="fa fa-search">',
+    '#suffix' => '</i></button>',
+	);
+	
+	 // $form['actions']['submit'] = array(
+    //  '#type'  => 'submit',
+	//  );
 	
 	//$form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/images/search.png');
   }
+}
+
+
+
+
+function header_omega_links__locale_block(&$vars) {
+  foreach($vars['links'] as $language => $langInfo) {
+		$vars['links'][$language]['title'] = $vars['links'][$language]['language']->language;
+  }
+  $content = theme_links($vars);
+  return $content;
 }
